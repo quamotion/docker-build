@@ -19,6 +19,9 @@ RUN apt-get update \
 && npm install -g bower \
 && npm install -g gulp \
 
+## Enable running bower with admini privileges
+&& echo '{ "allow_root": true }' > /root/.bowerrc
+
 # Install Powershell Core
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
