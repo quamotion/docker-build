@@ -19,5 +19,17 @@ RUN apt-get update \
 && npm install -g bower \
 && npm install -g gulp \
 
+# Install Powershell Core
+&& curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+&& curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
+&& apt-get update \
+&& apt-get install -y powershell \
+
+# Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list \
+&& apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893 \
+&& apt-get update \
+&& apt-get install -y --no-install-recommends azure-cli \
+ 
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
