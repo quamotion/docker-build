@@ -1,0 +1,1 @@
+FROM ubuntu-16.04-docker-17.06.0-ce-standard
