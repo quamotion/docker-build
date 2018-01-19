@@ -10,7 +10,9 @@ RUN apt-get update \
 && apt-get install -y dotnet-sdk-2.1.4 \
 
 ## node.js 8 (LTS)
-&& curl -sL https://deb.nodesource.com/setup_8.x | -E bash - \
+&& curl -sL https://deb.nodesource.com/setup_8.x -o setup-nodejs \
+&& /bin/bash setup-nodejs \
+&& rm setup-nodejs \
 && apt-get install -y nodejs \
 
 ## Bower & Gulp
