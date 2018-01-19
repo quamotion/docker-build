@@ -6,7 +6,7 @@ RUN apt-get update \
 ## see https://docs.gitlab.com/runner/install/linux-repository.html
 && apt-get install -y curl \
 && curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash \
-&& apt-get install gitlab-runner \
+&& apt-get install -y gitlab-runner \
 
 ## .NET Core
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus \
