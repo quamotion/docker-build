@@ -15,6 +15,7 @@ RUN choco install \
     nodejs \
     curl \
     docker \
+    docfx \
     --confirm \
     --limit-output \
     --timeout 216000 \
@@ -22,7 +23,7 @@ RUN choco install \
 
 # common node tools
 RUN npm install gulp -g && npm install bower -g
-
+    
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install .NET Core SDK
