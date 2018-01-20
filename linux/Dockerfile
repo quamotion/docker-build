@@ -1,6 +1,7 @@
 FROM microsoft/vsts-agent:ubuntu-16.04-docker-17.06.0-ce
 
 RUN apt-get update \
+&& apt-get - y upgrade \
 
 ## .NET Core
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus \
