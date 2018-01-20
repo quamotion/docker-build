@@ -33,6 +33,21 @@ RUN apt-get update \
 && apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893 \
 && apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
- 
+
+## Latest .NET Core 2.1 builds
+&& curl -sL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
+&& mkdir ~/dotnet-latest/ \
+&& tar xf dotnet-sdk-latest-linux-x64.tar.gz -C ~/dotnet-latest/ \
+&& rm dotnet-sdk-latest-linux-x64.tar.gz \
+
+## Helm
+&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.7.2-linux-amd64.tar.gz -o helm-v2.7.2-linux-amd64.tar.gz \
+&& mkdir ~/helm \
+&& tar xf helm-v2.7.2-linux-amd64.tar.gz -C ~/helm/ \
+&& mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
+&& rm -rf ~/helm \
+
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
+
+ENV agent.disableupdate=true
