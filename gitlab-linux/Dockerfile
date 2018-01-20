@@ -1,6 +1,7 @@
 FROM ubuntu:xenial
 
 RUN apt-get update \
+&& apt-get - y upgrade \
 
 ## GitLab runner
 ## see https://docs.gitlab.com/runner/install/linux-repository.html
