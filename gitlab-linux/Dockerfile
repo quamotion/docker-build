@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 
 RUN apt-get update \
 && apt-get upgrade -y \
-&& apt-get install -y software-properties-common \
+&& apt-get install -y software-properties-common curl \
 
 # Install Docker
 && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
