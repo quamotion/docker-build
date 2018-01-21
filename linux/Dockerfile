@@ -58,6 +58,9 @@ RUN apt-get update \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
+## wget
+&& apt-get install -y wget \
+
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
 
