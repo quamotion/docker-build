@@ -30,6 +30,7 @@ RUN apt-get update \
 && apt-get install -y powershell \
 
 ## Install PowerShell modules
+&& pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
 && pwsh -c "Install-Module -Name powershell-yaml" \
 
 # Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
