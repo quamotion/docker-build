@@ -65,6 +65,19 @@ RUN apt-get update \
 ## wget
 && apt-get install -y wget \
 
+## Prime the .NET Core cache
+&& mkdir ~/prime \
+&& cd ~/prime \
+&& dotnet new webapi \
+&& dotnet restore \
+&& rm -rf ~/prime \
+
+&& mkdir ~/prime \
+&& cd ~/prime \
+&& ~/dotnet-latest/dotnet new webapi \
+&& ~/dotnet-latest/dotnet restore \
+&& rm -rf ~/prime \
+
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
 
