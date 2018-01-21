@@ -4,6 +4,12 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common \
 
+# Install Docker
+&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+&& add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
+&& apt-get update \
+&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}') \
+
 ## GitLab runner
 ## see https://docs.gitlab.com/runner/install/linux-repository.html
 && apt-get install -y curl \
