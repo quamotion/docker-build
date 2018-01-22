@@ -51,6 +51,7 @@ RUN apt-get update \
 && tar xf helm-v2.7.2-linux-amd64.tar.gz -C ~/helm/ \
 && mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
 && rm -rf ~/helm \
+&& helm init --client-only \
 
 ## Ansible
 && apt-add-repository -y ppa:ansible/ansible \
