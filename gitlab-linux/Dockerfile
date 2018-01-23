@@ -57,6 +57,12 @@ RUN apt-get update \
 && tar xf dotnet-sdk-latest-linux-x64.tar.gz -C ~/dotnet-latest/ \
 && rm dotnet-sdk-latest-linux-x64.tar.gz \
 
+## Kubectl
+&& curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+&& echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
+&& apt-get update \
+&& apt-get install -y kubectl \
+
 ## Helm
 && curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.7.2-linux-amd64.tar.gz -o helm-v2.7.2-linux-amd64.tar.gz \
 && mkdir ~/helm \
