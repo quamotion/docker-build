@@ -40,7 +40,7 @@ RUN apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
 
 ## Latest .NET Core 2.1 builds
-&& curl -sL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/master/dotnet-sdk-latest-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
+&& curl -sL https://download.microsoft.com/download/D/7/8/D788D3CD-44C4-487D-829B-413E914FB1C3/dotnet-sdk-2.1.300-preview1-008174-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
 && mkdir ~/dotnet-latest/ \
 && tar xf dotnet-sdk-latest-linux-x64.tar.gz -C ~/dotnet-latest/ \
 && rm dotnet-sdk-latest-linux-x64.tar.gz \
