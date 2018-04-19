@@ -81,6 +81,12 @@ RUN apt-get update \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
+## Google Cloud SDK
+&& curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+&& echo "deb http://packages.cloud.google.com/apt xenial main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+&& apt-get update \
+&& apt-get install -y google-cloud-sdk \
+    
 ## wget
 && apt-get install -y wget \
 
