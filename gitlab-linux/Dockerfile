@@ -20,7 +20,7 @@ RUN apt-get update \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
-&& apt-get install -y dotnet-sdk-2.1.101 \
+&& apt-get install -y dotnet-sdk-2.1.105 \
 
 ## node.js 8 (LTS)
 && curl -sL https://deb.nodesource.com/setup_8.x -o setup-nodejs \
@@ -52,7 +52,7 @@ RUN apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
 
 ## Latest .NET Core 2.1 builds
-&& curl -sL https://download.microsoft.com/download/D/7/8/D788D3CD-44C4-487D-829B-413E914FB1C3/dotnet-sdk-2.1.300-preview1-008174-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
+&& curl -sL https://download.microsoft.com/download/3/7/C/37C0D2E3-2056-4F9A-A67C-14DEFBD70F06/dotnet-sdk-2.1.300-preview2-008530-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
 && mkdir ~/dotnet-latest/ \
 && tar xf dotnet-sdk-latest-linux-x64.tar.gz -C ~/dotnet-latest/ \
 && rm dotnet-sdk-latest-linux-x64.tar.gz \
