@@ -77,7 +77,7 @@ RUN apt-get update \
 && apt-get install -y ansible \
 
 ## yq
-&& curl -sL https://github.com/mikefarah/yq/releases/download/1.14.0/yq_linux_amd64 -o yq \
+&& curl -sL https://github.com/mikefarah/yq/releases/download/1.14.1/yq_linux_amd64 -o yq \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
