@@ -64,9 +64,9 @@ RUN apt-get update \
 && apt-get install -y kubectl \
 
 ## Helm
-&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.7.2-linux-amd64.tar.gz -o helm-v2.7.2-linux-amd64.tar.gz \
+&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.8.2-linux-amd64.tar.gz -o helm-v2.8.2-linux-amd64.tar.gz \
 && mkdir ~/helm \
-&& tar xf helm-v2.7.2-linux-amd64.tar.gz -C ~/helm/ \
+&& tar xf helm-v2.8.2-linux-amd64.tar.gz -C ~/helm/ \
 && mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
 && rm -rf ~/helm \
 && helm init --client-only \
