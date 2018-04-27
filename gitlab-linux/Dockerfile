@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 RUN apt-get update \
 && apt-get upgrade -y \
@@ -18,7 +18,7 @@ RUN apt-get update \
 ## .NET Core
 && apt-get install -y curl libc6-dev libgdiplus \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list \
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
 && apt-get install -y dotnet-sdk-2.1.105 \
 
@@ -37,7 +37,7 @@ RUN apt-get update \
 
 # Install Powershell Core
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-&& curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
+&& curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
 && apt-get update \
 && apt-get install -y powershell \
 
@@ -59,7 +59,7 @@ RUN apt-get update \
 
 ## Kubectl
 && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
-&& echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list \
+&& echo "deb http://apt.kubernetes.io/ kubernetes-bionic main" | tee /etc/apt/sources.list.d/kubernetes.list \
 && apt-get update \
 && apt-get install -y kubectl \
 
@@ -83,7 +83,9 @@ RUN apt-get update \
 
 ## Google Cloud SDK
 && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
-&& echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+
+# TODO: Update to Bionic
+&& echo "deb http://packages.cloud.google.com/apt cloud-sdk-artful main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
 && apt-get update \
 && apt-get install -y google-cloud-sdk \
     
