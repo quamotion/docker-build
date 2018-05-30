@@ -8,7 +8,7 @@ RUN apt-get update \
 && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 && add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
 && apt-get update \
-&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}') \
+&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.06 | head -1 | awk '{print $3}') \
 
 ## GitLab runner
 ## see https://docs.gitlab.com/runner/install/linux-repository.html
@@ -20,7 +20,7 @@ RUN apt-get update \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
-&& apt-get install -y dotnet-sdk-2.1.105 \
+&& apt-get install -y dotnet-sdk-2.1 \
 
 ## node.js 8 (LTS)
 && curl -sL https://deb.nodesource.com/setup_8.x -o setup-nodejs \
@@ -44,19 +44,13 @@ RUN apt-get update \
 ## Install PowerShell modules
 && pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
 && pwsh -c "Install-Module -Name powershell-yaml" \
+&& pwsh -c "Install-Module -Name Pester" \
 
 # Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list \
 && apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893 \
 && apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
-
-## Latest .NET Core 2.1 builds
-#&& curl -sL https://download.microsoft.com/download/3/7/C/37C0D2E3-2056-4F9A-A67C-14DEFBD70F06/dotnet-sdk-2.1.300-preview2-008530-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
-&& curl -sL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-x64.tar.gz -o dotnet-sdk-latest-linux-x64.tar.gz \
-&& mkdir ~/dotnet-latest/ \
-&& tar xf dotnet-sdk-latest-linux-x64.tar.gz -C ~/dotnet-latest/ \
-&& rm dotnet-sdk-latest-linux-x64.tar.gz \
 
 ## Kubectl
 && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
@@ -65,9 +59,9 @@ RUN apt-get update \
 && apt-get install -y kubectl \
 
 ## Helm
-&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.8.2-linux-amd64.tar.gz -o helm-v2.8.2-linux-amd64.tar.gz \
+&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.9.1-linux-amd64.tar.gz -o helm-v2.9.1-linux-amd64.tar.gz \
 && mkdir ~/helm \
-&& tar xf helm-v2.8.2-linux-amd64.tar.gz -C ~/helm/ \
+&& tar xf helm-v2.9.1-linux-amd64.tar.gz -C ~/helm/ \
 && mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
 && rm -rf ~/helm \
 && helm init --client-only \
@@ -78,7 +72,7 @@ RUN apt-get update \
 && apt-get install -y ansible \
 
 ## yq
-&& curl -sL https://github.com/mikefarah/yq/releases/download/1.14.1/yq_linux_amd64 -o yq \
+&& curl -sL https://github.com/mikefarah/yq/releases/download/1.15.0/yq_linux_amd64 -o yq \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
@@ -96,12 +90,6 @@ RUN apt-get update \
 && cd ~/prime \
 && dotnet new webapi \
 && dotnet restore \
-&& rm -rf ~/prime \
-
-&& mkdir ~/prime \
-&& cd ~/prime \
-&& ~/dotnet-latest/dotnet new webapi \
-&& ~/dotnet-latest/dotnet restore \
 && rm -rf ~/prime \
 
 ## cleanup
