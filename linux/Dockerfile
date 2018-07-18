@@ -1,7 +1,19 @@
-FROM microsoft/vsts-agent:ubuntu-16.04-docker-17.06.0-ce
+FROM ubuntu:xenial
 
 RUN apt-get update \
 && apt-get upgrade -y \
+&& apt-get install -y software-properties-common apt-transport-https curl \
+
+# Install Docker
+&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+&& add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
+&& apt-get update \
+&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.06 | head -1 | awk '{print $3}') \
+
+## GitLab runner
+## see https://docs.gitlab.com/runner/install/linux-repository.html
+&& curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash \
+&& apt-get install -y gitlab-runner \
 
 ## .NET Core
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng16-dev \
@@ -64,6 +76,12 @@ RUN apt-get update \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
+## Google Cloud SDK
+&& curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+&& echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+&& apt-get update \
+&& apt-get install -y google-cloud-sdk \
+    
 ## wget
 && apt-get install -y wget \
 
@@ -76,5 +94,3 @@ RUN apt-get update \
 
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
-
-ENV agent.disableupdate=true
