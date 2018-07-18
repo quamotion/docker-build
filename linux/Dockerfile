@@ -22,6 +22,9 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common apt-transport-https curl \
 
+# Install jq, required by the vsts-agent
+&& apt-get install -y jq \
+
 # Install Docker
 && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 && add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
