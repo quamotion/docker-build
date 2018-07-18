@@ -1,5 +1,23 @@
 FROM ubuntu:xenial
 
+## This image contains both VSTS and GitLab runners, and provides no default entrypoint.
+## You need to start the VSTS or GitLab runner manually when staring a container based on this image.
+
+## VSTS runner
+## see https://github.com/Microsoft/vsts-agent-docker/blob/master/ubuntu/16.04/Dockerfile
+
+# Accept the TEE EULA
+RUN mkdir -p "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
+ && cd "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
+ && echo '<ProductIdData><eula-14.0 value="true"/></ProductIdData>' > "com.microsoft.tfs.client.productid.xml"
+
+WORKDIR /vsts
+
+COPY ./start.sh .
+RUN chmod +x start.sh
+
+WORKDIR /
+
 RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common apt-transport-https curl \
