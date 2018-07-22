@@ -33,8 +33,24 @@ RUN Invoke-WebRequest $Env:DOTNET_SDK_DOWNLOAD_URL -OutFile dotnet.zip; \
     Expand-Archive dotnet.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
     Remove-Item -Force dotnet.zip
 
+# Install GitLab, VSTS runners
+ENV GITLAB_RUNNER_DOWNLOAD_URL https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe
+RUN New-Item -ItemType directory -Path C:\GitLab; \
+    Invoke-WebRequest $Env:GITLAB_RUNNER_DOWNLOAD_URL -OutFile C:\GitLab\gitlab-runner.exe
+
+ENV VSTS_AGENT_DOWNLOAD_URL https://vstsagentpackage.azureedge.net/agent/2.136.1/vsts-agent-win-x64-2.136.1.zip
+RUN Invoke-WebRequest $Env:VSTS_AGENT_DOWNLOAD_URL -OutFile vsts.zip; \
+    Expand-Archive vsts.zip -DestinationPath C:\vsts-agent -Force; \
+    Remove-Item -Force vsts.zip
+
+# Upgrade Pester to the latest version
+RUN Install-PackageProvider NuGet -force; \
+    Install-Module -Name Pester -Force -SkipPublisherCheck
+
+
 SHELL ["cmd", "/S", "/C"]
 
+# Add .NET Core to path, warm up
 RUN setx /M PATH "%PATH%;%ProgramFiles%\dotnet"
 
 RUN mkdir C:\warmup \
@@ -42,5 +58,3 @@ RUN mkdir C:\warmup \
     && dotnet new \
     && cd .. \
     && rmdir /S /Q C:\warmup 
-    
-CMD ["Start.cmd"]
