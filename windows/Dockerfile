@@ -47,11 +47,16 @@ RUN Invoke-WebRequest $Env:VSTS_AGENT_DOWNLOAD_URL -OutFile vsts.zip; \
 RUN Install-PackageProvider NuGet -force; \
     Install-Module -Name Pester -Force -SkipPublisherCheck
 
+# Install AzCopy, used by the release process
+ENV AZ_COPY_URL https://azcopy.azureedge.net/azcopy-7-1-0/MicrosoftAzureStorageTools.msi
+RUN Invoke-WebRequest $Env:AZ_COPY_URL -OutFile MicrosoftAzureStorageTools.msi; \
+    Start-Process msiexec.exe -Wait -ArgumentList '/i MicrosoftAzureStorageTools.msi /qn'; \
+    Remove-Item -Force MicrosoftAzureStorageTools.msi
 
 SHELL ["cmd", "/S", "/C"]
 
-# Add .NET Core to path, warm up
-RUN setx /M PATH "%PATH%;%ProgramFiles%\dotnet"
+# Add .NET Core, AzCopy to path, warm up .NET
+RUN setx /M PATH "%PATH%;%ProgramFiles%\dotnet;%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy"
 
 RUN mkdir C:\warmup \
     && cd C:\warmup \
