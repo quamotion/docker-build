@@ -1,4 +1,6 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 ## This image contains both VSTS and GitLab runners, and provides no default entrypoint.
 ## You need to start the VSTS or GitLab runner manually when staring a container based on this image.
@@ -37,9 +39,9 @@ RUN apt-get update \
 && apt-get install -y gitlab-runner \
 
 ## .NET Core
-&& apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng16-dev \
+&& apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list \
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
 && apt-get install -y dotnet-sdk-2.1 \
 
@@ -53,12 +55,12 @@ RUN apt-get update \
 && npm install -g bower \
 && npm install -g gulp \
 
-## Enable running bower with admini privileges
+## Enable running bower with admin privileges
 && echo '{ "allow_root": true }' > /root/.bowerrc \
 
 # Install Powershell Core
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-&& curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
+&& curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
 && apt-get update \
 && apt-get install -y powershell \
 
@@ -68,7 +70,7 @@ RUN apt-get update \
 && pwsh -c "Install-Module -Name Pester" \
 
 # Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
-&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list \
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bionic main" | tee /etc/apt/sources.list.d/azure-cli.list \
 && apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893 \
 && apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
@@ -99,10 +101,10 @@ RUN apt-get update \
 
 ## Google Cloud SDK
 && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
-&& echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+&& echo "deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
 && apt-get update \
 && apt-get install -y google-cloud-sdk \
-    
+
 ## wget
 && apt-get install -y wget \
 
