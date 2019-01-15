@@ -1,5 +1,11 @@
 FROM ubuntu:bionic
 
+ARG docker_version=18.06
+ARG dotnet_version=2.1
+ARG node_version=8.x
+ARG helm_version=v2.11.0
+ARG yq_version=1.15.0
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 ## This image contains both VSTS and GitLab runners, and provides no default entrypoint.
@@ -31,7 +37,7 @@ RUN apt-get update \
 && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 && add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
 && apt-get update \
-&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 18.06 | head -1 | awk '{print $3}') \
+&& apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep $docker_version | head -1 | awk '{print $3}') \
 
 ## GitLab runner
 ## see https://docs.gitlab.com/runner/install/linux-repository.html
@@ -43,10 +49,10 @@ RUN apt-get update \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
-&& apt-get install -y dotnet-sdk-2.1 \
+&& apt-get install -y dotnet-sdk-$dotnet_version \
 
-## node.js 8 (LTS)
-&& curl -sL https://deb.nodesource.com/setup_8.x -o setup-nodejs \
+## node.js
+&& curl -sL https://deb.nodesource.com/setup_$node_version -o setup-nodejs \
 && /bin/bash setup-nodejs \
 && rm setup-nodejs \
 && apt-get install -y nodejs \
@@ -82,9 +88,9 @@ RUN apt-get update \
 && apt-get install -y kubectl \
 
 ## Helm
-&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-v2.11.0-linux-amd64.tar.gz -o helm-v2.11.0-linux-amd64.tar.gz \
+&& curl -sL https://kubernetes-helm.storage.googleapis.com/helm-$helm_version-linux-amd64.tar.gz -o helm-$helm_version-linux-amd64.tar.gz \
 && mkdir ~/helm \
-&& tar xf helm-v2.11.0-linux-amd64.tar.gz -C ~/helm/ \
+&& tar xf helm-$helm_version-linux-amd64.tar.gz -C ~/helm/ \
 && mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
 && rm -rf ~/helm \
 && helm init --client-only \
@@ -95,7 +101,7 @@ RUN apt-get update \
 && apt-get install -y ansible \
 
 ## yq
-&& curl -sL https://github.com/mikefarah/yq/releases/download/1.15.0/yq_linux_amd64 -o yq \
+&& curl -sL https://github.com/mikefarah/yq/releases/download/$yq_version/yq_linux_amd64 -o yq \
 && chmod +x yq \
 && mv yq /usr/local/bin \
 
