@@ -51,6 +51,9 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y dotnet-sdk-$dotnet_version \
 
+## trx2junit to send trx files to GitLab
+&& dotnet tool install -g trx2junit \
+
 ## node.js
 && curl -sL https://deb.nodesource.com/setup_$node_version -o setup-nodejs \
 && /bin/bash setup-nodejs \
