@@ -67,6 +67,9 @@ RUN apt-get update \
 ## Enable running bower with admin privileges
 && echo '{ "allow_root": true }' > /root/.bowerrc \
 
+## eslint
+&& npm install -g eslint eslint-plugin-react babel-eslint eslint-config-defaults \
+
 # Install Powershell Core
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 && curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
