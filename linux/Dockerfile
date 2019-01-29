@@ -100,6 +100,7 @@ RUN apt-get update \
 && mv ~/helm/linux-amd64/helm /usr/local/bin/helm \
 && rm -rf ~/helm \
 && helm init --client-only \
+&& helm plugin install https://github.com/nouney/helm-gcs \
 
 ## Ansible
 && apt-add-repository -y ppa:ansible/ansible \
