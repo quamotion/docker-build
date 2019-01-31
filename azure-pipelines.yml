@@ -1,0 +1,12 @@
+variables:
+  imageName: 'quamotion/build-agent-windows:$(build.buildId)'
+
+jobs:
+- job: windows
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  - script: |
+      cd windows
+      docker build -f Dockerfile -t $(imageName) .
+    displayName: 'docker build'
