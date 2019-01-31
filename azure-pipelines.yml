@@ -10,3 +10,8 @@ jobs:
       cd windows
       docker build -f Dockerfile -t $(imageName) .
     displayName: 'docker build'
+  - script: |
+      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+      docker push $(imageName) .
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: 'docker push'
