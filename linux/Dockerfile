@@ -3,7 +3,7 @@ FROM ubuntu:bionic
 ARG docker_version=18.06
 ARG dotnet_version=2.2
 ARG node_version=10.x
-ARG helm_version=v2.12.2
+ARG helm_version=v2.13.0
 ARG yq_version=2.2.1
 
 ENV DEBIAN_FRONTEND=noninteractive
