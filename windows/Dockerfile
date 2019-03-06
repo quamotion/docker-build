@@ -17,6 +17,7 @@ RUN choco install \
     docker \
     docfx \
     netfx-4.5.1-devpack \
+    nuget.commandline \
     --confirm \
     --limit-output \
     --timeout 216000 \
