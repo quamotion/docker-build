@@ -13,10 +13,14 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common apt-transport-https curl \
 
-# Install jq, required by the vsts-agent
+## WebDriver dependencies for which we don't ship any native files as part
+## of the NuGet packages
+&& apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libturbojpeg0-dev \
+
+## Install jq, required by the vsts-agent
 && apt-get install -y jq \
 
-# Install Docker
+## Install Docker
 && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 && add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
 && apt-get update \
