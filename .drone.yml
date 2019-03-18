@@ -1,0 +1,18 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: build
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: quay.io/quamotion/build-agent-linux
+    dockerfile: linux-arm64/Dockerfile
+    tags: arm64
