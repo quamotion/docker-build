@@ -13,6 +13,8 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
+    registry: quay.io
     repo: quay.io/quamotion/build-agent-linux
     tags: arm64
     dockerfile: linux-arm64/Dockerfile
+
