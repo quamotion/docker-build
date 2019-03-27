@@ -34,13 +34,18 @@ RUN apt-get update \
 ## wget
 && apt-get install -y wget \
 
-## .NET Core
+## .NET Core (2.1)
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev libunwind8 \
-&& wget -O dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/4cd1c5c5-21c4-4d2b-bd8c-ab02e3f7e86f/08d30a68dc1e389f985186046036144a/dotnet-sdk-3.0.100-preview3-010431-linux-arm64.tar.gz \
 && mkdir -p /usr/local/dotnet \
-&& tar zxf dotnet.tar.gz -C /usr/local/dotnet \
+&& wget -O dotnet-sdk-2.2.105.tar.gz https://download.visualstudio.microsoft.com/download/pr/f2e3d68d-dc7e-4a4e-afce-6588572a19d8/d3b822d4387d2d2721eb853108b5251b/dotnet-sdk-2.2.105-linux-arm64.tar.gz \
+&& tar zxf dotnet-sdk-2.2.105.tar.gz -C /usr/local/dotnet \
+&& rm dotnet-sdk-2.2.105.tar.gz \
+
+## .NET Core (3.0 preview)
+&& wget -O dotnet-sdk-3.0.100.tar.gz https://download.visualstudio.microsoft.com/download/pr/4cd1c5c5-21c4-4d2b-bd8c-ab02e3f7e86f/08d30a68dc1e389f985186046036144a/dotnet-sdk-3.0.100-preview3-010431-linux-arm64.tar.gz \
+&& tar zxf dotnet-sdk-3.0.100.tar.gz -C /usr/local/dotnet \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
-&& rm dotnet.tar.gz \
+&& rm dotnet-sdk-3.0.100.tar.gz \
 
 ## trx2junit to send trx files to GitLab
 && dotnet tool install -g trx2junit \
