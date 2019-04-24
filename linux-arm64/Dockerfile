@@ -42,7 +42,7 @@ RUN apt-get update \
 && rm dotnet-sdk-2.2.105.tar.gz \
 
 ## .NET Core (3.0 preview)
-&& wget -O dotnet-sdk-3.0.100.tar.gz https://download.visualstudio.microsoft.com/download/pr/4cd1c5c5-21c4-4d2b-bd8c-ab02e3f7e86f/08d30a68dc1e389f985186046036144a/dotnet-sdk-3.0.100-preview3-010431-linux-arm64.tar.gz \
+&& wget -O dotnet-sdk-3.0.100.tar.gz https://download.visualstudio.microsoft.com/download/pr/39601b46-a250-46c3-92f0-68493e07fe5c/3bc40cf7868dcdd05ce353e253fd266c/dotnet-sdk-3.0.100-preview4-011223-linux-arm64.tar.gz \
 && tar zxf dotnet-sdk-3.0.100.tar.gz -C /usr/local/dotnet \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
 && rm dotnet-sdk-3.0.100.tar.gz \
