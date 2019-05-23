@@ -2,6 +2,7 @@ FROM ubuntu:bionic
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
+ARG dotnet_package_version=2.2.300-1 
 ARG node_version=10.x
 ARG helm_version=v2.13.0
 ARG yq_version=2.2.1
@@ -49,7 +50,7 @@ RUN apt-get update \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
-&& apt-get install -y dotnet-sdk-$dotnet_version \
+&& apt-get install -y dotnet-sdk-$dotnet_version=${dotnet_package_version} \
 
 ## trx2junit to send trx files to GitLab
 && dotnet tool install -g trx2junit \
