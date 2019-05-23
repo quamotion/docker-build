@@ -2,7 +2,7 @@ FROM centos:7
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.204
+ARG dotnet_package_version=2.2.204-1
 ARG node_version=v10.15.3
 ARG helm_version=v2.13.0
 ARG yq_version=2.2.1
