@@ -2,7 +2,7 @@ FROM centos:7
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.204-1
+ARG dotnet_package_version=2.2.300-1
 ARG node_version=v10.15.3
 ARG helm_version=v2.13.0
 ARG yq_version=2.2.1
@@ -56,7 +56,7 @@ RUN yum install epel-release -y \
 
 ## .NET Core
 && rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm \
-&& yum install -y dotnet-sdk-${dotnet_version}:${dotnet_package_version} --nogpgcheck \
+&& yum install -y dotnet-sdk-${dotnet_version}-${dotnet_package_version} --nogpgcheck \
 
 ## trx2junit to send trx files to GitLab
 && dotnet tool install -g trx2junit \
