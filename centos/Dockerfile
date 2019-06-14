@@ -39,7 +39,7 @@ RUN yum install epel-release -y \
 ## See https://github.com/dotnet/corefx/issues/25102 for the libc6-dev dependency
 && yum install -y yum-utils \
 && yum-config-manager -y --add-repo https://download.opensuse.org/repositories/home:/qmfrederik/CentOS_7/home:qmfrederik.repo \
-&& yum install -y glibc-devel libturbojpeg-devel-${libturbojpeg_version} libgdiplus0-${libgdiplus_version} \
+&& yum install -y glibc-devel libturbojpeg-devel-${libturbojpeg_version} libgdiplus0-${libgdiplus_version} libzl4-devel \
 
 ## wget
 && yum install -y wget \
