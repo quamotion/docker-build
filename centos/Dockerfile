@@ -31,6 +31,13 @@ RUN chmod +x start.sh
 
 WORKDIR /
 
+# Update yume timeout, build.opensuse.org seems to have a very high time to first byte
+# for some packages in the home repository
+RUN cp /etc/yum.conf /etc/yum.conf.bak \
+&& echo "minrate=1" >> /etc/yum.conf \
+&& echo "timeout=300" >> /etc/yum.conf \
+&& cat /etc/yum.conf
+
 # Install jq, required by the vsts-agent
 RUN yum install epel-release -y \
 && yum install -y jq \
