@@ -17,6 +17,7 @@ steps:
     repo: quay.io/quamotion/build-agent-linux
     tags: latest-arm64
     dockerfile: linux-arm64/Dockerfile
+    context: linux-arm64
 
 ---
 
@@ -39,6 +40,7 @@ steps:
     repo: quay.io/quamotion/build-agent-linux
     tags: latest
     dockerfile: linux/Dockerfile
+    context: linux
 
 ---
 
@@ -61,4 +63,5 @@ steps:
     repo: quay.io/quamotion/build-agent-linux
     tags: latest-centos
     dockerfile: centos/Dockerfile
+    context: centos
 
