@@ -2,10 +2,10 @@ FROM centos:7
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.300-1
+ARG dotnet_package_version=2.2.301-1
 ARG node_version=v10.15.3
-ARG helm_version=v2.13.0
-ARG yq_version=2.2.1
+ARG helm_version=v2.14.1
+ARG yq_version=2.4.0
 # Make sure to pick up a recent version from the OpenBuild repository
 ARG libturbojpeg_version=2.0.2
 ARG libgdiplus_version=5.23.32

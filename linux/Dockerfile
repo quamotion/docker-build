@@ -2,10 +2,10 @@ FROM ubuntu:bionic
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.300-1 
-ARG node_version=10.x
-ARG helm_version=v2.13.0
-ARG yq_version=2.2.1
+ARG dotnet_package_version=2.2.301-1 
+ARG node_version=v10.16.0
+ARG helm_version=v2.14.1
+ARG yq_version=2.4.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -56,10 +56,9 @@ RUN apt-get update \
 && dotnet tool install -g trx2junit \
 
 ## node.js
-&& curl -sL https://deb.nodesource.com/setup_$node_version -o setup-nodejs \
-&& /bin/bash setup-nodejs \
-&& rm setup-nodejs \
-&& apt-get install -y nodejs \
+&& wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz \
+&& tar --strip-components 1 -xzvf node-${node_version}-linux-x64.tar.gz -C /usr/local \
+&& rm node-${node_version}-linux-x64.tar.gz \
 
 ## Bower & Gulp
 && npm install -g bower \

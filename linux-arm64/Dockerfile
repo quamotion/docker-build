@@ -1,9 +1,13 @@
 FROM ubuntu:bionic
 
 ARG docker_version=18.06
-ARG node_version=10.x
-ARG helm_version=v2.13.0
-ARG yq_version=2.2.1
+ARG node_version=v10.16.0
+ARG helm_version=v2.14.1
+ARG yq_version=2.4.0
+ARG dotnet_2_version=2.2.301
+ARG dotnet_2_slug=0af74ee1-47bb-43bd-b55f-1657f079c309/6649fd1bc91b14aee4a6b4ed44a2f45d
+ARG dotnet_3_version=3.0.100-preview6-012264
+ARG dotnet_3_slug=8997987c-1fcc-4b83-ab49-08117ac40f86/13f3cc0b0dfcf37398d11caff3926bb9
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -37,24 +41,23 @@ RUN apt-get update \
 ## .NET Core (2.2)
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev libunwind8 \
 && mkdir -p /usr/local/dotnet \
-&& wget -O dotnet-sdk-2.2.300.tar.gz https://download.visualstudio.microsoft.com/download/pr/9605c24e-9bb2-499f-a003-4fb2bddcf09c/a8683ff89405d370961beb1909ddc295/dotnet-sdk-2.2.300-linux-arm64.tar.gz \
-&& tar zxf dotnet-sdk-2.2.300.tar.gz -C /usr/local/dotnet \
-&& rm dotnet-sdk-2.2.300.tar.gz \
+&& wget -O dotnet-sdk-${dotnet_2_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/9605c24e-9bb2-499f-a003-4fb2bddcf09c/a8683ff89405d370961beb1909ddc295/dotnet-sdk-${dotnet_2_version}-linux-arm64.tar.gz \
+&& tar zxf dotnet-sdk-${dotnet_2_version}.tar.gz -C /usr/local/dotnet \
+&& rm dotnet-sdk-${dotnet_2_version}.tar.gz \
 
 ## .NET Core (3.0 preview)
-&& wget -O dotnet-sdk-3.0.100-preview5.tar.gz https://download.visualstudio.microsoft.com/download/pr/fa62ce11-f5d3-4f71-a5dd-07edf988edae/91cfccdeb4a58583f49c4a12dbd6f329/dotnet-sdk-3.0.100-preview5-011568-linux-arm64.tar.gz \
-&& tar zxf dotnet-sdk-3.0.100-preview5.tar.gz -C /usr/local/dotnet \
+&& wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
+&& tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
-&& rm dotnet-sdk-3.0.100-preview5.tar.gz \
+&& rm dotnet-sdk-${dotnet_3_version}.tar.gz \
 
 ## trx2junit to send trx files to GitLab
 && dotnet tool install -g trx2junit \
 
 ## node.js
-&& curl -sL https://deb.nodesource.com/setup_$node_version -o setup-nodejs \
-&& /bin/bash setup-nodejs \
-&& rm setup-nodejs \
-&& apt-get install -y nodejs \
+&& wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-arm64.tar.gz \
+&& tar --strip-components 1 -xzvf node-${node_version}-linux-arm64.tar.gz -C /usr/local \
+&& rm node-${node_version}-linux-arm64.tar.gz \
 
 ## Bower & Gulp
 && npm install -g bower \
