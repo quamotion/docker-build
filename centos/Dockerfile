@@ -2,7 +2,7 @@ FROM centos:7
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.301-1
+ARG dotnet_package_version=2.2.300-1
 ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
@@ -31,7 +31,7 @@ RUN chmod +x start.sh
 
 WORKDIR /
 
-# Update yume timeout, build.opensuse.org seems to have a very high time to first byte
+# Update yum timeout, build.opensuse.org seems to have a very high time to first byte
 # for some packages in the home repository
 RUN cp /etc/yum.conf /etc/yum.conf.bak \
 && echo "minrate=1" >> /etc/yum.conf \
