@@ -1,5 +1,5 @@
 kind: pipeline
-name: default
+name: arm64
 
 platform:
   os: linux
@@ -15,6 +15,50 @@ steps:
       from_secret: docker_password
     registry: quay.io
     repo: quay.io/quamotion/build-agent-linux
-    tags: arm64
+    tags: latest-arm64
     dockerfile: linux-arm64/Dockerfile
+
+---
+
+kind: pipeline
+name: linux
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry: quay.io
+    repo: quay.io/quamotion/build-agent-linux
+    tags: latest
+    dockerfile: linux/Dockerfile
+
+---
+
+kind: pipeline
+name: centos
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    registry: quay.io
+    repo: quay.io/quamotion/build-agent-linux
+    tags: latest-centos
+    dockerfile: centos/Dockerfile
 
