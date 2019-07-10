@@ -56,7 +56,7 @@ RUN apt-get update \
 && dotnet tool install -g trx2junit \
 
 ## node.js
-&& wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz \
+&& curl -sL https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz  -o node-${node_version}-linux-x64.tar.gz \
 && tar --strip-components 1 -xzvf node-${node_version}-linux-x64.tar.gz -C /usr/local \
 && rm node-${node_version}-linux-x64.tar.gz \
 
