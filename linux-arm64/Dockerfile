@@ -41,7 +41,7 @@ RUN apt-get update \
 ## .NET Core (2.2)
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev libunwind8 \
 && mkdir -p /usr/local/dotnet \
-&& wget -O dotnet-sdk-${dotnet_2_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/9605c24e-9bb2-499f-a003-4fb2bddcf09c/a8683ff89405d370961beb1909ddc295/dotnet-sdk-${dotnet_2_version}-linux-arm64.tar.gz \
+&& wget -O dotnet-sdk-${dotnet_2_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_2_slug}/dotnet-sdk-${dotnet_2_version}-linux-arm64.tar.gz \
 && tar zxf dotnet-sdk-${dotnet_2_version}.tar.gz -C /usr/local/dotnet \
 && rm dotnet-sdk-${dotnet_2_version}.tar.gz \
 
