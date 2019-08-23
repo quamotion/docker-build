@@ -10,24 +10,9 @@ ARG yq_version=2.4.0
 ARG libturbojpeg_version=2.0.2
 ARG libgdiplus_version=5.23.32
 
-## This image contains both VSTS and GitLab runners, and provides no default entrypoint.
-## You need to start the VSTS or GitLab runner manually when staring a container based on this image.
-
-## VSTS runner
-## see https://github.com/Microsoft/vsts-agent-docker/blob/master/ubuntu/16.04/Dockerfile
-
-# Accept the TEE EULA
-RUN mkdir -p "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
- && cd "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
- && echo '<ProductIdData><eula-14.0 value="true"/></ProductIdData>' > "com.microsoft.tfs.client.productid.xml"
-
-WORKDIR /vsts
-
-COPY ./start-vsts.sh ./start.sh
 COPY ./kubernetes.repo /etc/yum.repos.d/kubernetes.repo
 COPY ./google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
 COPY ./azure-cli.repo /etc/yum.repos.d/azure-cli.repo
-RUN chmod +x start.sh
 
 WORKDIR /
 
