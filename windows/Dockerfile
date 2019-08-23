@@ -1,5 +1,4 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
-# ENV WINDOWS_IMAGE_VERSION=10.0.14393
 
 RUN mkdir C:\BuildAgent
 WORKDIR C:/BuildAgent
@@ -15,9 +14,15 @@ RUN choco install \
     nodejs \
     curl \
     docker \
-    docfx \
     netfx-4.5.1-devpack \
     nuget.commandline \
+    --confirm \
+    --limit-output \
+    --timeout 216000 \
+    && rmdir /S /Q C:\chococache
+
+RUN choco install \
+    docfx --version 2.42.4 \
     --confirm \
     --limit-output \
     --timeout 216000 \
@@ -29,27 +34,17 @@ RUN npm install gulp -g && npm install bower -g
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install .NET Core SDK
-ENV DOTNET_2_2_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/3c7fcb0b-52ee-40b2-853d-710c58883371/78bbdf5fcd85697e8e306c355d02d0b0/dotnet-sdk-2.2.301-win-x64.zip
+ENV DOTNET_2_2_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/4de548ef-9b51-4b1f-ae3a-60ebd6a6f2b5/01fce24fe286e7475fdbecc60f1daee5/dotnet-sdk-2.2.401-win-x64.zip
 
 RUN Invoke-WebRequest $Env:DOTNET_2_2_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-2.2.zip; \
     Expand-Archive dotnet-sdk-2.2.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
     Remove-Item -Force dotnet-sdk-2.2.zip
 
-ENV DOTNET_3_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/4e73514f-0646-4600-bdc2-38c90fc207b6/22ad70cbe1a254177e6d7b7f7e7425f8/dotnet-sdk-3.0.100-preview6-012264-win-x64.zip
+ENV DOTNET_3_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/701abc79-0ceb-406c-aa4b-5e429c665448/05424ebe3bdb06688b910664fbff0671/dotnet-sdk-3.0.100-preview8-013656-win-x64.zip
 
 RUN Invoke-WebRequest $Env:DOTNET_3_0_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.0.zip; \
     Expand-Archive dotnet-sdk-3.0.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
     Remove-Item -Force dotnet-sdk-3.0.zip
-
-# Install GitLab, VSTS runners
-ENV GITLAB_RUNNER_DOWNLOAD_URL https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe
-RUN New-Item -ItemType directory -Path C:\GitLab; \
-    Invoke-WebRequest $Env:GITLAB_RUNNER_DOWNLOAD_URL -OutFile C:\GitLab\gitlab-runner.exe
-
-ENV VSTS_AGENT_DOWNLOAD_URL https://vstsagentpackage.azureedge.net/agent/2.144.2/vsts-agent-win-x86-2.144.2.zip
-RUN Invoke-WebRequest $Env:VSTS_AGENT_DOWNLOAD_URL -OutFile vsts.zip; \
-    Expand-Archive vsts.zip -DestinationPath C:\vsts-agent -Force; \
-    Remove-Item -Force vsts.zip
 
 # Upgrade Pester to the latest version
 RUN Install-PackageProvider NuGet -force; \
