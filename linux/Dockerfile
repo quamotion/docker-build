@@ -9,22 +9,6 @@ ARG yq_version=2.4.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-## This image contains both VSTS and GitLab runners, and provides no default entrypoint.
-## You need to start the VSTS or GitLab runner manually when staring a container based on this image.
-
-## VSTS runner
-## see https://github.com/Microsoft/vsts-agent-docker/blob/master/ubuntu/16.04/Dockerfile
-
-# Accept the TEE EULA
-RUN mkdir -p "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
- && cd "/root/.microsoft/Team Foundation/4.0/Configuration/TEE-Mementos" \
- && echo '<ProductIdData><eula-14.0 value="true"/></ProductIdData>' > "com.microsoft.tfs.client.productid.xml"
-
-WORKDIR /vsts
-
-COPY ./start-vsts.sh ./start.sh
-RUN chmod +x start.sh
-
 WORKDIR /
 
 RUN apt-get update \
@@ -40,20 +24,12 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep $docker_version | head -1 | awk '{print $3}') \
 
-## GitLab runner
-## see https://docs.gitlab.com/runner/install/linux-repository.html
-&& curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash \
-&& apt-get install -y gitlab-runner \
-
 ## .NET Core
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
 && apt-get install -y dotnet-sdk-$dotnet_version=${dotnet_package_version} \
-
-## trx2junit to send trx files to GitLab
-&& dotnet tool install -g trx2junit \
 
 ## node.js
 && curl -sL https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz  -o node-${node_version}-linux-x64.tar.gz \
