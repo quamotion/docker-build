@@ -66,3 +66,6 @@ RUN mkdir C:\warmup \
     && dotnet new \
     && cd .. \
     && rmdir /S /Q C:\warmup 
+
+## Install nbgv tool
+RUN dotnet install -g nbgv

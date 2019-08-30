@@ -113,5 +113,8 @@ RUN yum install epel-release -y \
 && dotnet restore \
 && rm -rf ~/prime \
 
+## Install nbgv tool
+&& dotnet install -g nbgv \
+
 ## cleanup
 && rm -rf /var/lib/apt/lists/*

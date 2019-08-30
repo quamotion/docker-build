@@ -107,5 +107,8 @@ RUN apt-get update \
 && dotnet restore \
 && rm -rf ~/prime \
 
+## Install nbgv tool
+&& dotnet install -g nbgv \
+
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
