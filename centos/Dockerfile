@@ -33,8 +33,8 @@ RUN yum install epel-release -y \
 && yum-config-manager -y --add-repo https://download.opensuse.org/repositories/home:/qmfrederik/CentOS_7/home:qmfrederik.repo \
 && yum install -y glibc-devel libturbojpeg-devel-${libturbojpeg_version} libgdiplus0-${libgdiplus_version} lz4-devel \
 
-## wget
-&& yum install -y wget \
+## wget and git
+&& yum install -y wget git \
 
 # Install Docker
 && yum install -y device-mapper-persistent-data lvm2 \
