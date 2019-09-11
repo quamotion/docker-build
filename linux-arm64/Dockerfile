@@ -4,10 +4,10 @@ ARG docker_version=18.06
 ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
-ARG dotnet_2_version=2.2.301
-ARG dotnet_2_slug=0af74ee1-47bb-43bd-b55f-1657f079c309/6649fd1bc91b14aee4a6b4ed44a2f45d
-ARG dotnet_3_version=3.0.100-preview6-012264
-ARG dotnet_3_slug=8997987c-1fcc-4b83-ab49-08117ac40f86/13f3cc0b0dfcf37398d11caff3926bb9
+ARG dotnet_2_version=2.2.402
+ARG dotnet_2_slug=ce1e41f0-8914-4785-8b2a-34685181a494/1a5f2968600e957bcbeb3210eb4b330f
+ARG dotnet_3_version=3.0.100-preview9-014004
+ARG dotnet_3_slug=c068c551-5f8c-4409-afd5-dac6a8aea3fe/b38a1104afbde07e5b9c89dbd2e0c894
 
 ENV DEBIAN_FRONTEND=noninteractive
 
