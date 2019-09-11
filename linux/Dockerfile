@@ -31,6 +31,12 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y dotnet-sdk-$dotnet_version=${dotnet_package_version} \
 
+## trx2junit to send trx files to GitLab
+&& dotnet tool install -g trx2junit \
+
+## Install nbgv tool
+&& dotnet tool install -g nbgv \
+
 ## node.js
 && curl -sL https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz  -o node-${node_version}-linux-x64.tar.gz \
 && tar --strip-components 1 -xzvf node-${node_version}-linux-x64.tar.gz -C /usr/local \
@@ -106,9 +112,6 @@ RUN apt-get update \
 && dotnet new webapi \
 && dotnet restore \
 && rm -rf ~/prime \
-
-## Install nbgv tool
-&& dotnet tool install --global nbgv --version 3.0.25 \
 
 ## cleanup
 && rm -rf /var/lib/apt/lists/*

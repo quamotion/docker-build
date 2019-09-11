@@ -30,11 +30,6 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep $docker_version | head -1 | awk '{print $3}') \
 
-## GitLab runner
-## Use the Ubuntu-provided version of the GitLab runner, as GitLab itself doesn't
-## have any ARM64 runners (yet)
-&& apt-get install -y gitlab-runner \
-
 ## wget
 && apt-get install -y wget \
 

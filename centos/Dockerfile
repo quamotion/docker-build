@@ -41,17 +41,15 @@ RUN yum install epel-release -y \
 && yum-config-manager -y --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
 && yum install -y docker-ce:${docker_version} docker-ce-cli:${docker_version} containerd.io \
 
-## GitLab runner
-## see https://docs.gitlab.com/runner/install/linux-repository.html
-&& curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | bash \
-&& yum install -y gitlab-runner \
-
 ## .NET Core
 && rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm \
 && yum install -y dotnet-sdk-${dotnet_version}-${dotnet_package_version} --nogpgcheck \
 
 ## trx2junit to send trx files to GitLab
 && dotnet tool install -g trx2junit \
+
+## Install nbgv tool
+&& dotnet tool install -g nbgv \
 
 ## node.js
 && wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz \
@@ -112,9 +110,6 @@ RUN yum install epel-release -y \
 && dotnet new webapi \
 && dotnet restore \
 && rm -rf ~/prime \
-
-## Install nbgv tool
-&& dotnet tool install --global nbgv --version 3.0.25 \
 
 ## cleanup
 && rm -rf /var/lib/apt/lists/*
