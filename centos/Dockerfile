@@ -45,11 +45,9 @@ RUN yum install epel-release -y \
 && rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm \
 && yum install -y dotnet-sdk-${dotnet_version}-${dotnet_package_version} --nogpgcheck \
 
-## trx2junit to send trx files to GitLab
-&& dotnet tool install -g trx2junit \
-
-## Install nbgv tool
-&& dotnet tool install -g nbgv \
+## Install the nbgv tool
+&& dotnet tool install --tool-path /usr/local/share/dotnet-tools nbgv \
+&& ln -s /usr/local/share/dotnet-tools/nbgv /usr/local/bin/nbgv \
 
 ## node.js
 && wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-x64.tar.gz \
