@@ -4,10 +4,8 @@ ARG docker_version=18.06
 ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
-ARG dotnet_2_version=2.2.402
-ARG dotnet_2_slug=ce1e41f0-8914-4785-8b2a-34685181a494/1a5f2968600e957bcbeb3210eb4b330f
-ARG dotnet_3_version=3.0.100-preview9-014004
-ARG dotnet_3_slug=c068c551-5f8c-4409-afd5-dac6a8aea3fe/b38a1104afbde07e5b9c89dbd2e0c894
+ARG dotnet_3_version=3.0.100
+ARG dotnet_3_slug=cbc83a0e-895c-4959-99d9-21cd11596e64/b0e59c2ba2bd3ef0f592acbeae7ab27d
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -33,21 +31,11 @@ RUN apt-get update \
 ## wget
 && apt-get install -y wget \
 
-## .NET Core (2.2)
-&& apt-get install -y curl apt-transport-https libc6-dev libgdiplus libpng-dev libunwind8 \
-&& mkdir -p /usr/local/dotnet \
-&& wget -O dotnet-sdk-${dotnet_2_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_2_slug}/dotnet-sdk-${dotnet_2_version}-linux-arm64.tar.gz \
-&& tar zxf dotnet-sdk-${dotnet_2_version}.tar.gz -C /usr/local/dotnet \
-&& rm dotnet-sdk-${dotnet_2_version}.tar.gz \
-
-## .NET Core (3.0 preview)
+## .NET Core 3.0
 && wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
 && tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
 && rm dotnet-sdk-${dotnet_3_version}.tar.gz \
-
-## trx2junit to send trx files to GitLab
-&& dotnet tool install -g trx2junit \
 
 ## node.js
 && wget https://nodejs.org/dist/${node_version}/node-${node_version}-linux-arm64.tar.gz \

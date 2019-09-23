@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 
 ARG docker_version=18.06
 ARG dotnet_version=2.2
-ARG dotnet_package_version=2.2.402-1 
+ARG dotnet_package_version=3.0.100-1 
 ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
