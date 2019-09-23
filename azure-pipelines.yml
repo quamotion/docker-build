@@ -1,12 +1,12 @@
 jobs:
 - job: windows
   variables:
-    imageName: 'quay.io/quamotion/build-agent-linux:windows-$(build.buildId)'
+    imageName: 'quamotion/build-agent-windows:$(build.buildId)'
   pool:
     vmImage: 'windows-2019'
   steps:
   - script: |
-      docker login quay.io -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)"
+      docker login -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)"
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: 'docker login'
 
