@@ -50,6 +50,9 @@ RUN apt-get update \
 ## eslint
 && npm install -g eslint eslint-plugin-react babel-eslint eslint-config-defaults \
 
+## mocha (used to test the appium-xcuitest-driver)
+&& npm install -g mocha mocha-junit-reporter \
+
 # Install Powershell Core
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 && curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \

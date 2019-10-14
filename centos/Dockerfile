@@ -64,6 +64,9 @@ RUN yum install epel-release -y \
 ## eslint
 && npm install -g eslint eslint-plugin-react babel-eslint eslint-config-defaults \
 
+## mocha (used to test the appium-xcuitest-driver)
+&& npm install -g mocha mocha-junit-reporter \
+
 # Install Powershell Core
 && curl https://packages.microsoft.com/config/rhel/7/prod.repo | tee /etc/yum.repos.d/microsoft.repo \
 && yum install -y powershell \

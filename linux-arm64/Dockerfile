@@ -52,6 +52,9 @@ RUN apt-get update \
 ## eslint
 && npm install -g eslint eslint-plugin-react babel-eslint eslint-config-defaults \
 
+## mocha (used to test the appium-xcuitest-driver)
+&& npm install -g mocha mocha-junit-reporter \
+
 # Install Powershell Core
 && wget -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-rc.1/powershell-6.2.0-rc.1-linux-arm64.tar.gz \
 && mkdir -p /usr/local/powershell \
