@@ -23,8 +23,11 @@ RUN cp /etc/yum.conf /etc/yum.conf.bak \
 && echo "timeout=300" >> /etc/yum.conf \
 && cat /etc/yum.conf
 
+## Install sudo \
+RUN yum install -y sudo \
+
 # Install jq, required by the vsts-agent
-RUN yum install epel-release -y \
+&& yum install epel-release -y \
 && yum install -y jq \
 
 ## Install various .NET Core / WebDriver dependencies

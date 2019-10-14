@@ -15,6 +15,9 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common apt-transport-https curl \
 
+## Install sudo
+&& apt-get install -y sudo \
+
 ## WebDriver dependencies for which we don't ship any native files as part
 ## of the NuGet packages
 && apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libturbojpeg0-dev liblz4-dev \

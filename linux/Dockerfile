@@ -15,6 +15,9 @@ RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y software-properties-common apt-transport-https curl \
 
+## Install sudo
+&& apt-get install -y sudo \
+
 # Install jq, required by the vsts-agent
 && apt-get install -y jq \
 
