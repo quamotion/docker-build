@@ -36,6 +36,7 @@ RUN apt-get update \
 
 ## .NET Core 3.0
 && wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
+&& mkdir -p /usr/local/dotnet \
 && tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
 && rm dotnet-sdk-${dotnet_3_version}.tar.gz \
@@ -59,7 +60,7 @@ RUN apt-get update \
 && npm install -g mocha mocha-junit-reporter \
 
 # Install Powershell Core
-&& wget -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v6.2.0-rc.1/powershell-6.2.0-rc.1-linux-arm64.tar.gz \
+&& wget -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v6.2.3/powershell-6.2.3-linux-arm64.tar.gz \
 && mkdir -p /usr/local/powershell \
 && tar zxf powershell.tar.gz -C /usr/local/powershell \
 && ln -s /usr/local/powershell/pwsh /usr/local/bin/pwsh \
