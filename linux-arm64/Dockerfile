@@ -64,6 +64,7 @@ RUN apt-get update \
 && mkdir -p /usr/local/powershell \
 && tar zxf powershell.tar.gz -C /usr/local/powershell \
 && ln -s /usr/local/powershell/pwsh /usr/local/bin/pwsh \
+&& chmod +x /usr/local/bin/pwsh \
 && rm powershell.tar.gz \
 
 ## Install PowerShell modules
