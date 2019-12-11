@@ -5,7 +5,7 @@ ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
 ARG dotnet_3_version=3.1.100
-ARG dotnet_3_slug=d731f991-8e68-4c7c-8ea0-fad5605b077a/49497b5420eecbd905158d86d738af64
+ARG dotnet_3_slug=5a4c8f96-1c73-401c-a6de-8e100403188a/0ce6ab39747e2508366d498f9c0a0669
 
 ENV DEBIAN_FRONTEND=noninteractive
 
