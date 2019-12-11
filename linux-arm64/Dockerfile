@@ -4,8 +4,8 @@ ARG docker_version=18.06
 ARG node_version=v10.16.0
 ARG helm_version=v2.14.1
 ARG yq_version=2.4.0
-ARG dotnet_3_version=3.0.100
-ARG dotnet_3_slug=cbc83a0e-895c-4959-99d9-21cd11596e64/b0e59c2ba2bd3ef0f592acbeae7ab27d
+ARG dotnet_3_version=3.1.100
+ARG dotnet_3_slug=d731f991-8e68-4c7c-8ea0-fad5605b077a/49497b5420eecbd905158d86d738af64
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -34,7 +34,7 @@ RUN apt-get update \
 ## wget
 && apt-get install -y wget \
 
-## .NET Core 3.0
+## .NET Core 3.1
 && wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
 && mkdir -p /usr/local/dotnet \
 && tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \

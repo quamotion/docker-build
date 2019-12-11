@@ -34,11 +34,11 @@ RUN npm install gulp -g && npm install bower -g
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install .NET Core SDK
-ENV DOTNET_3_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/a24f4f34-ada1-433a-a437-5bc85fc2576a/7e886d06729949c15c96fe7e70faa8ae/dotnet-sdk-3.0.100-win-x64.zip
+ENV DOTNET_3_1_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/28a2c4ff-6154-473b-bd51-c62c76171551/ea47eab2219f323596c039b3b679c3d6/dotnet-sdk-3.1.100-win-x64.zip
 
-RUN Invoke-WebRequest $Env:DOTNET_3_0_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.0.zip; \
-    Expand-Archive dotnet-sdk-3.0.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
-    Remove-Item -Force dotnet-sdk-3.0.zip
+RUN Invoke-WebRequest $Env:DOTNET_3_1_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.1.zip; \
+    Expand-Archive dotnet-sdk-3.1.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
+    Remove-Item -Force dotnet-sdk-3.1.zip
 
 # Upgrade Pester to the latest version
 RUN Install-PackageProvider NuGet -force; \
@@ -62,4 +62,4 @@ RUN mkdir C:\warmup \
     && rmdir /S /Q C:\warmup 
 
 ## Install nbgv tool
-RUN dotnet tool install --global nbgv --version 3.0.25
+RUN dotnet tool install --global nbgv --version 3.0.28
