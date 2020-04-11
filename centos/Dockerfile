@@ -6,7 +6,7 @@ ARG node_version=v10.16.0
 ARG yq_version=2.4.0
 # Make sure to pick up a recent version from the OpenBuild repository
 ARG libturbojpeg_version=2.0.2
-ARG libgdiplus_version=5.23.32
+ARG libgdiplus_version=5.8.64
 
 COPY ./kubernetes.repo /etc/yum.repos.d/kubernetes.repo
 COPY ./google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
