@@ -93,9 +93,9 @@ RUN apt-get update \
 ##
 && apt-get install -y wget libusb-1.0-0 \
 ##
-## nuget, tzdata
+## git, tzdata
 ##
-&& apt-get install -y tzdata \
+&& apt-get install -y git tzdata \
 ##
 ## Prime the .NET Core cache
 ##
