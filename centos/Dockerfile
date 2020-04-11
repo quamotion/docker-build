@@ -8,8 +8,6 @@ ARG yq_version=2.4.0
 ARG libturbojpeg_version=2.0.2
 ARG libgdiplus_version=5.8.64
 
-COPY ./kubernetes.repo /etc/yum.repos.d/kubernetes.repo
-COPY ./google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
 COPY ./azure-cli.repo /etc/yum.repos.d/azure-cli.repo
 
 WORKDIR /
