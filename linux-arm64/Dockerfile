@@ -2,8 +2,8 @@ FROM ubuntu:bionic
 
 ARG node_version=v10.16.0
 ARG yq_version=2.4.0
-ARG dotnet_3_version=3.1.100
-ARG dotnet_3_slug=5a4c8f96-1c73-401c-a6de-8e100403188a/0ce6ab39747e2508366d498f9c0a0669
+ARG dotnet_3_version=3.1.300
+ARG dotnet_3_slug=e5e70860-a6d4-48cf-b0d1-eeba32657d80/2da3c605aaa65c7e4ac2ad0507a2e429
 
 ENV DEBIAN_FRONTEND=noninteractive
 
