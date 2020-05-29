@@ -1,7 +1,7 @@
 FROM ubuntu:bionic
 
 ARG node_version=v12.17.0
-ARG yq_version=2.4.0
+ARG yq_version=3.3.0
 ARG dotnet_3_version=3.1.300
 ARG dotnet_3_slug=e5e70860-a6d4-48cf-b0d1-eeba32657d80/2da3c605aaa65c7e4ac2ad0507a2e429
 
