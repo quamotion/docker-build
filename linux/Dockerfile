@@ -97,6 +97,10 @@ RUN apt-get update \
 ##
 && apt-get install -y git tzdata \
 ##
+## adb, ffmpeg (used for integration tests)
+##
+&& apt-get -y install adb ffmpeg \
+##
 ## Prime the .NET Core cache
 ##
 && mkdir ~/prime \
