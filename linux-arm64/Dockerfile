@@ -4,6 +4,8 @@ ARG node_version=v12.18.3
 ARG yq_version=3.3.2
 ARG dotnet_version=5.0.100-preview.8.20417.9
 ARG dotnet_slug=a1e93182-8026-4330-b78a-ee7d721107a2/003c59fc228a220df40d90d5ac434873
+ARG dotnet_3_version=3.1.300	
+ARG dotnet_3_slug=e5e70860-a6d4-48cf-b0d1-eeba32657d80/2da3c605aaa65c7e4ac2ad0507a2e429	
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -30,12 +32,18 @@ RUN apt-get update \
 ##
 && apt-get install -y wget libusb-1.0-0 \
 ##
-## .NET Core
+## .NET Core 3.1
+##
+&& wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
+&& mkdir -p /usr/local/dotnet \	
+&& tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \	
+&& ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \	
+&& rm dotnet-sdk-${dotnet_3_version}.tar.gz \	
+##
+## .NET Core 5 preview
 ##
 && wget -O dotnet-sdk-${dotnet_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_slug}/dotnet-sdk-${dotnet_version}-linux-arm64.tar.gz \
-&& mkdir -p /usr/local/dotnet \
 && tar zxf dotnet-sdk-${dotnet_version}.tar.gz -C /usr/local/dotnet \
-&& ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
 && rm dotnet-sdk-${dotnet_version}.tar.gz \
 ##
 ## node.js
