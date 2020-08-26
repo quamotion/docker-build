@@ -1,7 +1,7 @@
 FROM ubuntu:focal
 
-ARG node_version=v12.17.0
-ARG yq_version=3.3.0
+ARG node_version=v12.18.3
+ARG yq_version=3.3.2
 ARG dotnet_version=5.0.100-preview.8.20417.9
 ARG dotnet_slug=a1e93182-8026-4330-b78a-ee7d721107a2/003c59fc228a220df40d90d5ac434873
 
