@@ -4,8 +4,8 @@ ARG node_version=v12.18.3
 ARG yq_version=3.3.2
 ARG dotnet_version=5.0.100-preview.8.20417.9
 ARG dotnet_slug=a1e93182-8026-4330-b78a-ee7d721107a2/003c59fc228a220df40d90d5ac434873
-ARG dotnet_3_version=3.1.300	
-ARG dotnet_3_slug=e5e70860-a6d4-48cf-b0d1-eeba32657d80/2da3c605aaa65c7e4ac2ad0507a2e429	
+ARG dotnet_3_version=3.1.401	
+ARG dotnet_3_slug=8c39349a-23d0-46b0-8206-8b573a404709/b42fd441c1911acc90aaddaa58d7103f
 
 ENV DEBIAN_FRONTEND=noninteractive
 
