@@ -34,6 +34,7 @@ RUN apt-get update \
 ##
 ## .NET Core 3.1
 ##
+&& apt-get install -y libgdiplus \
 && wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
 && mkdir -p /usr/local/dotnet \	
 && tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \	
