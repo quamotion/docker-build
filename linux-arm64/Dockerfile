@@ -2,8 +2,8 @@ FROM ubuntu:focal
 
 ARG node_version=v12.18.3
 ARG yq_version=3.3.2
-ARG dotnet_version=5.0.100-preview.8.20417.9
-ARG dotnet_slug=a1e93182-8026-4330-b78a-ee7d721107a2/003c59fc228a220df40d90d5ac434873
+ARG dotnet_version=5.0.100-rc.1.20452.10
+ARG dotnet_slug=8f24c20f-cf36-44bb-9405-becc781e6a1c/b5d8a40cde8b4525ea65ac4e5c7250d5
 ARG dotnet_3_version=3.1.401	
 ARG dotnet_3_slug=8c39349a-23d0-46b0-8206-8b573a404709/b42fd441c1911acc90aaddaa58d7103f
 
