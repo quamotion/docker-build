@@ -4,6 +4,7 @@ ARG dotnet_version=3.1
 ARG dotnet_package_version=3.1.401-1
 ARG node_version=v12.18.3
 ARG yq_version=3.3.2
+ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -68,7 +69,7 @@ RUN apt-get update \
 ##
 && pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
 && pwsh -c "Install-Module -Name powershell-yaml" \
-&& pwsh -c "Install-Module -Name Pester" \
+&& pwsh -c "Install-Module -Name Pester -RequiredVersion $pester_version" \
 ##
 ## Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 ##

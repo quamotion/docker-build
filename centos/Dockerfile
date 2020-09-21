@@ -7,6 +7,7 @@ ARG yq_version=3.3.2
 # Make sure to pick up a recent version from the OpenBuild repository
 ARG libturbojpeg_version=2.0.2
 ARG libgdiplus_version=5.8.64
+ARG pester_version=4.10.1
 
 COPY ./azure-cli.repo /etc/yum.repos.d/azure-cli.repo
 
@@ -81,7 +82,7 @@ RUN yum install -y sudo \
 ##
 && pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
 && pwsh -c "Install-Module -Name powershell-yaml" \
-&& pwsh -c "Install-Module -Name Pester" \
+&& pwsh -c "Install-Module -Name Pester -RequiredVersion $pester_version" \
 ##
 ## Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 ##

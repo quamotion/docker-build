@@ -6,6 +6,7 @@ ARG dotnet_version=5.0.100-rc.1.20452.10
 ARG dotnet_slug=8f24c20f-cf36-44bb-9405-becc781e6a1c/b5d8a40cde8b4525ea65ac4e5c7250d5
 ARG dotnet_3_version=3.1.401	
 ARG dotnet_3_slug=8c39349a-23d0-46b0-8206-8b573a404709/b42fd441c1911acc90aaddaa58d7103f
+ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -83,7 +84,7 @@ RUN apt-get update \
 ##
 && pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
 && pwsh -c "Install-Module -Name powershell-yaml" \
-&& pwsh -c "Install-Module -Name Pester" \
+&& pwsh -c "Install-Module -Name Pester -RequiredVersion $pester_version" \
 ##
 ## tzdata
 ##

@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
+ARG pester_version=4.10.1
+
 RUN mkdir C:\BuildAgent
 WORKDIR C:/BuildAgent
 COPY ./Start.* ./
@@ -42,7 +44,7 @@ RUN Invoke-WebRequest $Env:DOTNET_3_1_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.1.z
 
 # Upgrade Pester to the latest version
 RUN Install-PackageProvider NuGet -force; \
-    Install-Module -Name Pester -Force -SkipPublisherCheck
+    Install-Module -Name Pester -RequiredVersion $pester_version -Force -SkipPublisherCheck
 
 # Install AzCopy, used by the release process
 ENV AZ_COPY_URL https://azcopy.azureedge.net/azcopy-8-1-0/MicrosoftAzureStorageAzCopy_netcore_x64.msi
