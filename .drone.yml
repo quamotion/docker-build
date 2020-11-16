@@ -14,7 +14,7 @@ steps:
     password:
       from_secret: docker_password
     registry: quay.io
-    repo: quay.io/quamotion/build-agent-linux
+    repo: quay.io/quamotion/build-agent
     tags: latest-arm64
     dockerfile: linux-arm64/Dockerfile
     context: linux-arm64
@@ -37,7 +37,7 @@ steps:
     password:
       from_secret: docker_password
     registry: quay.io
-    repo: quay.io/quamotion/build-agent-linux
+    repo: quay.io/quamotion/build-agent
     tags: latest
     dockerfile: linux/Dockerfile
     context: linux
@@ -60,7 +60,7 @@ steps:
     password:
       from_secret: docker_password
     registry: quay.io
-    repo: quay.io/quamotion/build-agent-linux
+    repo: quay.io/quamotion/build-agent
     tags: latest-centos
     dockerfile: centos/Dockerfile
     context: centos

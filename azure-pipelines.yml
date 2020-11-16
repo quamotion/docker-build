@@ -1,7 +1,7 @@
 jobs:
 - job: windows
   variables:
-    imageName: 'quay.io/quamotion/build-agent-windows:$(build.buildId)'
+    imageName: 'quay.io/quamotion/build-agent:$(build.buildId)-windows'
   pool:
     vmImage: 'windows-2019'
   steps:
