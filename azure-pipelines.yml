@@ -1,59 +1,17 @@
 jobs:
 - job: windows
   variables:
-    imageName: 'quamotion/build-agent-windows:$(build.buildId)'
+    imageName: 'quay.io/quamotion/build-agent-windows:$(build.buildId)'
   pool:
     vmImage: 'windows-2019'
   steps:
   - script: |
-      docker login -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)"
+      docker login -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)" quay.io
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: 'docker login'
 
   - script: |
       cd windows
-      docker build -f Dockerfile -t $(imageName) .
-    displayName: 'docker build'
-
-  - script: |
-      docker push $(imageName)
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: 'docker push'
-
-- job: centos
-  variables:
-    imageName: 'quay.io/quamotion/build-agent-linux:centos-$(build.buildId)'
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - script: |
-      docker login quay.io -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)"
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-    displayName: 'docker login'
-
-  - script: |
-      cd centos
-      docker build -f Dockerfile -t $(imageName) .
-    displayName: 'docker build'
-
-  - script: |
-      docker push $(imageName)
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: 'docker push'
-
-- job: linux
-  variables:
-    imageName: 'quay.io/quamotion/build-agent-linux:$(build.buildId)'
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - script: |
-      docker login quay.io -u="$(DOCKER_USER)" -p="$(DOCKER_PASS)"
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-    displayName: 'docker login'
-
-  - script: |
-      cd linux
       docker build -f Dockerfile -t $(imageName) .
     displayName: 'docker build'
 
