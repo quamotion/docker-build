@@ -1,11 +1,9 @@
 FROM ubuntu:focal
 
-ARG node_version=v12.18.3
-ARG yq_version=3.3.2
-ARG dotnet_version=5.0.100-rc.1.20452.10
-ARG dotnet_slug=8f24c20f-cf36-44bb-9405-becc781e6a1c/b5d8a40cde8b4525ea65ac4e5c7250d5
-ARG dotnet_3_version=3.1.401	
-ARG dotnet_3_slug=8c39349a-23d0-46b0-8206-8b573a404709/b42fd441c1911acc90aaddaa58d7103f
+ARG node_version=v14.15.0
+ARG yq_version=3.4.1
+ARG dotnet_version=5.0.100
+ARG dotnet_slug=27840e8b-d61c-472d-8e11-c16784d40091/ae9780ccda4499405cf6f0924f6f036a
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -33,20 +31,13 @@ RUN apt-get update \
 ##
 && apt-get install -y wget libusb-1.0-0 \
 ##
-## .NET Core 3.1
+## .NET Core 5
 ##
-&& apt-get install -y libgdiplus \
-&& wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
-&& mkdir -p /usr/local/dotnet \	
-&& tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \	
-&& ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \	
-&& rm dotnet-sdk-${dotnet_3_version}.tar.gz \	
-##
-## .NET Core 5 preview
-##
+&& mkdir -p /usr/local/dotnet \
 && wget -O dotnet-sdk-${dotnet_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_slug}/dotnet-sdk-${dotnet_version}-linux-arm64.tar.gz \
 && tar zxf dotnet-sdk-${dotnet_version}.tar.gz -C /usr/local/dotnet \
 && rm dotnet-sdk-${dotnet_version}.tar.gz \
+&& ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
 ##
 ## node.js
 ##

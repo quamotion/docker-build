@@ -1,9 +1,9 @@
 FROM ubuntu:bionic
 
-ARG dotnet_version=3.1
-ARG dotnet_package_version=3.1.401-1
-ARG node_version=v12.18.3
-ARG yq_version=3.3.2
+ARG dotnet_version=5.0
+ARG dotnet_package_version=5.0.100-1
+ARG node_version=v14.15.0
+ARG yq_version=3.4.1
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive

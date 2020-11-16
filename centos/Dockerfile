@@ -1,9 +1,9 @@
 FROM centos:7
 
-ARG dotnet_version=3.1
-ARG dotnet_package_version=3.1.401-1
-ARG node_version=v12.18.3
-ARG yq_version=3.3.2
+ARG dotnet_version=5.0
+ARG dotnet_package_version=5.0.100-1
+ARG node_version=v14.15.0
+ARG yq_version=3.4.1
 # Make sure to pick up a recent version from the OpenBuild repository
 ARG libturbojpeg_version=2.0.2
 ARG libgdiplus_version=5.8.64
