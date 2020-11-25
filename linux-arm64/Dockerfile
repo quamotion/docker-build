@@ -2,6 +2,8 @@ FROM ubuntu:focal
 
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
+ARG dotnet_3_version=3.1.404
+ARG dotnet_3_slug=de47cbe2-f75f-44c5-8250-7960a36d6591/76cfdbfb7bf17cce27378a9fddd969a6
 ARG dotnet_version=5.0.100
 ARG dotnet_slug=27840e8b-d61c-472d-8e11-c16784d40091/ae9780ccda4499405cf6f0924f6f036a
 ARG pester_version=4.10.1
@@ -34,6 +36,9 @@ RUN apt-get update \
 ## .NET Core 5
 ##
 && mkdir -p /usr/local/dotnet \
+&& wget -O dotnet-sdk-${dotnet_3_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_3_slug}/dotnet-sdk-${dotnet_3_version}-linux-arm64.tar.gz \
+&& tar zxf dotnet-sdk-${dotnet_3_version}.tar.gz -C /usr/local/dotnet \
+&& rm dotnet-sdk-${dotnet_3_version}.tar.gz \
 && wget -O dotnet-sdk-${dotnet_version}.tar.gz https://download.visualstudio.microsoft.com/download/pr/${dotnet_slug}/dotnet-sdk-${dotnet_version}-linux-arm64.tar.gz \
 && tar zxf dotnet-sdk-${dotnet_version}.tar.gz -C /usr/local/dotnet \
 && rm dotnet-sdk-${dotnet_version}.tar.gz \

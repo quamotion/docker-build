@@ -1,5 +1,7 @@
 FROM centos:7
 
+ARG dotnet_3_version=3.1
+ARG dotnet_3_package_version=3.1.404-1
 ARG dotnet_version=5.0
 ARG dotnet_package_version=5.0.100-1
 ARG node_version=v14.15.0
@@ -43,6 +45,7 @@ RUN yum install -y sudo \
 ## .NET Core
 ##
 && rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm \
+&& yum install -y dotnet-sdk-${dotnet_3_version}-${dotnet_3_package_version} --nogpgcheck \
 && yum install -y dotnet-sdk-${dotnet_version}-${dotnet_package_version} --nogpgcheck \
 ##
 ## Install the nbgv tool

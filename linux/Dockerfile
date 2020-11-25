@@ -1,5 +1,7 @@
 FROM ubuntu:bionic
 
+ARG dotnet_3_version=3.1
+ARG dotnet_3_package_version=3.1.404-1
 ARG dotnet_version=5.0
 ARG dotnet_package_version=5.0.100-1
 ARG node_version=v14.15.0
@@ -28,6 +30,7 @@ RUN apt-get update \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
+&& apt-get install -y dotnet-sdk-$dotnet_3_version=${dotnet_3_package_version} \
 && apt-get install -y dotnet-sdk-$dotnet_version=${dotnet_package_version} \
 ##
 ## Install the nbgv tool
