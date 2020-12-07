@@ -81,12 +81,6 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
 ##
-## Ansible
-##
-&& apt-add-repository -y ppa:ansible/ansible \
-&& apt-get update \
-&& apt-get install -y ansible \
-##
 ## yq
 ##
 && curl -sL https://github.com/mikefarah/yq/releases/download/$yq_version/yq_linux_amd64 -o yq \

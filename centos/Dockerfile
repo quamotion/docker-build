@@ -91,10 +91,6 @@ RUN yum install -y sudo \
 ##
 && yum install -y azure-cli \
 ##
-## Ansible
-##
-&& yum install -y ansible \
-##
 ## yq
 ##
 && curl -sL https://github.com/mikefarah/yq/releases/download/${yq_version}/yq_linux_amd64 -o yq \
