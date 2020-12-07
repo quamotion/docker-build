@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 ARG dotnet_3_version=3.1
 ARG dotnet_3_package_version=3.1.404-1
@@ -28,7 +28,7 @@ RUN apt-get update \
 ##
 && apt-get install -y curl apt-transport-https libc6-dev libgdiplus libturbojpeg \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list \
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod focal main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
 && apt-get install -y dotnet-sdk-$dotnet_3_version=${dotnet_3_package_version} \
 && apt-get install -y dotnet-sdk-$dotnet_version=${dotnet_package_version} \
@@ -76,7 +76,7 @@ RUN apt-get update \
 ##
 ## Configure AzCLI 2.0  Instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 ##
-&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bionic main" | tee /etc/apt/sources.list.d/azure-cli.list \
+&& echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ focal main" | tee /etc/apt/sources.list.d/azure-cli.list \
 && curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
 && apt-get update \
 && apt-get install -y --no-install-recommends azure-cli \
