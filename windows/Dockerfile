@@ -36,8 +36,8 @@ RUN npm install gulp -g && npm install bower -g
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install .NET Core SDK
-ENV DOTNET_3_1_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/355e1344-7f0e-45c7-aace-ac51a3d9183f/a356fda8c22ea1e0e3ba1c6f0b2e4815/dotnet-sdk-3.1.404-win-x64.zip
-ENV DOTNET_5_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/7b78bdaa-d0ac-41c4-9fdc-5820d7dc79b6/cea499dd314ba6394ccea51a2a2dcda9/dotnet-sdk-5.0.100-win-x64.zip
+ENV DOTNET_3_1_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/94cd3943-95b4-4d86-a3ec-07f434b460b9/e0db650eba4bf8b3ec8ef99312a66047/dotnet-sdk-3.1.410-win-x64.zip
+ENV DOTNET_5_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/af1d2dd6-4c53-4595-9437-fe923fe0d7f1/bbbf3d8f43bfdb35e84f2aa867290547/dotnet-sdk-5.0.301-win-x64.zip
 
 RUN Invoke-WebRequest $Env:DOTNET_3_1_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.1.zip; \
     Expand-Archive dotnet-sdk-3.1.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
