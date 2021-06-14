@@ -1,9 +1,9 @@
 FROM centos:7
 
 ARG dotnet_3_version=3.1
-ARG dotnet_3_package_version=3.1.404-1
+ARG dotnet_3_package_version=3.1.410-1
 ARG dotnet_version=5.0
-ARG dotnet_package_version=5.0.100-1
+ARG dotnet_package_version=5.0.301-1
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
 # Make sure to pick up a recent version from the OpenBuild repository

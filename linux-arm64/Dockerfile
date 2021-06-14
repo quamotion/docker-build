@@ -2,10 +2,10 @@ FROM ubuntu:focal
 
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
-ARG dotnet_3_version=3.1.404
-ARG dotnet_3_slug=de47cbe2-f75f-44c5-8250-7960a36d6591/76cfdbfb7bf17cce27378a9fddd969a6
-ARG dotnet_version=5.0.100
-ARG dotnet_slug=27840e8b-d61c-472d-8e11-c16784d40091/ae9780ccda4499405cf6f0924f6f036a
+ARG dotnet_3_version=3.1.410
+ARG dotnet_3_slug=0d0ad29d-da90-42ce-a88d-94f47f9ddc09/bbfafc31b9a7e36140a74e0e157e9e3e
+ARG dotnet_version=5.0.301
+ARG dotnet_slug=574ddb7e-5fbc-4b28-ae76-2bb9c0d3f163/04d9d954b7d40c8d46b7c9067f421e03
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,7 +23,7 @@ RUN apt-get update \
 ## WebDriver dependencies for which we don't ship any native files as part
 ## of the NuGet packages
 ##
-&& apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgdiplus libturbojpeg liblz4-dev \
+&& apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgdiplus libturbojpeg liblz4 \
 ##
 ## Install jq, required by the vsts-agent
 ##

@@ -1,9 +1,9 @@
 FROM ubuntu:focal
 
 ARG dotnet_3_version=3.1
-ARG dotnet_3_package_version=3.1.404-1
+ARG dotnet_3_package_version=3.1.410-1
 ARG dotnet_version=5.0
-ARG dotnet_package_version=5.0.100-1
+ARG dotnet_package_version=5.0.301-1
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
 ARG pester_version=4.10.1
@@ -26,7 +26,7 @@ RUN apt-get update \
 ##
 ## .NET Core
 ##
-&& apt-get install -y curl apt-transport-https libc6-dev libgdiplus libturbojpeg \
+&& apt-get install -y curl apt-transport-https libc6-dev libgdiplus libturbojpeg liblz4 \
 && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
 && echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod focal main" > /etc/apt/sources.list.d/dotnetdev.list \
 && apt-get update \
