@@ -6,6 +6,7 @@ ARG dotnet_3_version=3.1.410
 ARG dotnet_3_slug=0d0ad29d-da90-42ce-a88d-94f47f9ddc09/bbfafc31b9a7e36140a74e0e157e9e3e
 ARG dotnet_version=5.0.301
 ARG dotnet_slug=574ddb7e-5fbc-4b28-ae76-2bb9c0d3f163/04d9d954b7d40c8d46b7c9067f421e03
+ARG nbgv_version=3.4.216
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -43,6 +44,11 @@ RUN apt-get update \
 && tar zxf dotnet-sdk-${dotnet_version}.tar.gz -C /usr/local/dotnet \
 && rm dotnet-sdk-${dotnet_version}.tar.gz \
 && ln -s /usr/local/dotnet/dotnet /usr/local/bin/dotnet \
+##
+## Install the nbgv tool
+##
+&& dotnet tool install --tool-path /usr/local/share/dotnet-tools nbgv --version ${nbgv_version} \
+&& ln -s /usr/local/share/dotnet-tools/nbgv /usr/local/bin/nbgv \
 ##
 ## node.js
 ##

@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
+ARG nbgv_version=3.4.216
 ARG pester_version=4.10.1
 
 RUN mkdir C:\BuildAgent
@@ -69,4 +70,4 @@ RUN mkdir C:\warmup \
     && rmdir /S /Q C:\warmup 
 
 ## Install nbgv tool
-RUN dotnet tool install --global nbgv --version 3.0.28
+RUN dotnet tool install --global nbgv --version %NBGV_VERSION% --add-source https://api.nuget.org/v3/index.json
