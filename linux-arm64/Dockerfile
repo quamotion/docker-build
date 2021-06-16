@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM public.ecr.aws/lts/ubuntu:focal
 
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
