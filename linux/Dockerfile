@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM public.ecr.aws/lts/ubuntu:focal
 
 ARG dotnet_3_version=3.1
 ARG dotnet_3_package_version=3.1.410-1
