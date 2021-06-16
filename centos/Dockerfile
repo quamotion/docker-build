@@ -4,6 +4,7 @@ ARG dotnet_3_version=3.1
 ARG dotnet_3_package_version=3.1.410-1
 ARG dotnet_version=5.0
 ARG dotnet_package_version=5.0.301-1
+ARG nbgv_version=3.4.216
 ARG node_version=v14.15.0
 ARG yq_version=3.4.1
 # Make sure to pick up a recent version from the OpenBuild repository
@@ -50,7 +51,7 @@ RUN yum install -y sudo \
 ##
 ## Install the nbgv tool
 ##
-&& dotnet tool install --tool-path /usr/local/share/dotnet-tools nbgv \
+&& dotnet tool install --tool-path /usr/local/share/dotnet-tools nbgv --version ${nbgv_version} \
 && ln -s /usr/local/share/dotnet-tools/nbgv /usr/local/bin/nbgv \
 ##
 ## node.js
