@@ -24,7 +24,7 @@ RUN apt-get update \
 ## WebDriver dependencies for which we don't ship any native files as part
 ## of the NuGet packages
 ##
-&& apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgdiplus libturbojpeg liblz4-1 \
+&& apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgdiplus libturbojpeg \
 ##
 ## Install jq, required by the vsts-agent
 ##
