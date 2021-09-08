@@ -1,5 +1,9 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
+ARG dotnet_3_version=3.1.412
+ARG dotnet_3_slug=44476be2-ac39-4378-889e-37e71285c5fd/d8e7bc8809999cd5d56622993ee06c63
+ARG dotnet_version=5.0.400
+ARG dotnet_slug=f7ed6662-c39e-43da-be01-ef7cae72cd6d/58ed07e77e1a8ab0cab93c17edf33817
 ARG nbgv_version=3.4.216
 ARG pester_version=4.10.1
 
@@ -37,14 +41,13 @@ RUN npm install gulp -g && npm install bower -g
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Install .NET Core SDK
-ENV DOTNET_3_1_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/94cd3943-95b4-4d86-a3ec-07f434b460b9/e0db650eba4bf8b3ec8ef99312a66047/dotnet-sdk-3.1.410-win-x64.zip
-ENV DOTNET_5_0_SDK_DOWNLOAD_URL https://download.visualstudio.microsoft.com/download/pr/af1d2dd6-4c53-4595-9437-fe923fe0d7f1/bbbf3d8f43bfdb35e84f2aa867290547/dotnet-sdk-5.0.301-win-x64.zip
-
-RUN Invoke-WebRequest $Env:DOTNET_3_1_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-3.1.zip; \
+RUN Write-Host "Downloading https://download.visualstudio.microsoft.com/download/pr/${env:dotnet_3_slug}/dotnet-sdk-${env:dotnet_3_version}-win-x64.zip"; \
+    Invoke-WebRequest https://download.visualstudio.microsoft.com/download/pr/${env:dotnet_3_slug}/dotnet-sdk-${env:dotnet_3_version}-win-x64.zip -OutFile dotnet-sdk-3.1.zip; \
     Expand-Archive dotnet-sdk-3.1.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
     Remove-Item -Force dotnet-sdk-3.1.zip
 
-RUN Invoke-WebRequest $Env:DOTNET_5_0_SDK_DOWNLOAD_URL -OutFile dotnet-sdk-5.0.zip; \
+RUN Write-Host "Downloading https://download.visualstudio.microsoft.com/download/pr/${env:dotnet_slug}/dotnet-sdk-${env:dotnet_version}-win-x64.zip"; \
+    Invoke-WebRequest https://download.visualstudio.microsoft.com/download/pr/${env:dotnet_slug}/dotnet-sdk-${env:dotnet_version}-win-x64.zip -OutFile dotnet-sdk-5.0.zip; \
     Expand-Archive dotnet-sdk-5.0.zip -DestinationPath $Env:ProgramFiles\dotnet -Force; \
     Remove-Item -Force dotnet-sdk-5.0.zip
 
