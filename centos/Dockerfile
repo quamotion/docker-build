@@ -1,4 +1,4 @@
-FROM centos:7
+FROM registry.centos.org/centos:7
 
 ARG dotnet_3_version=3.1
 ARG dotnet_3_package_version=3.1.410-1
