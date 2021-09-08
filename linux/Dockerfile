@@ -5,7 +5,7 @@ ARG dotnet_3_package_version=3.1.410-1
 ARG dotnet_version=5.0
 ARG dotnet_package_version=5.0.301-1
 ARG nbgv_version=3.4.216
-ARG node_version=v14.15.0
+ARG node_version=v14.17.6
 ARG yq_version=3.4.1
 ARG pester_version=4.10.1
 
