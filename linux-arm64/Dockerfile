@@ -4,9 +4,9 @@ ARG dotnet_3_version=3.1.412
 ARG dotnet_3_slug=f9f54199-f0b3-43ac-badd-f9ef6867641c/50bd985f26c59f5d63f29f571f7f89e5
 ARG dotnet_version=5.0.400
 ARG dotnet_slug=4d323232-ffcc-4c09-a043-a36b554c883e/096822e81dc29383b649cd015d1ff99a
-ARG nbgv_version=3.4.216
+ARG nbgv_version=3.4.231
 ARG node_version=v14.17.6
-ARG yq_version=3.4.1
+ARG yq_version=4.12.2
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive
