@@ -4,9 +4,9 @@ ARG dotnet_3_version=3.1
 ARG dotnet_3_package_version=3.1.412-1
 ARG dotnet_version=5.0
 ARG dotnet_package_version=5.0.400-1
-ARG nbgv_version=3.4.216
+ARG nbgv_version=3.4.231
 ARG node_version=v14.17.6
-ARG yq_version=3.4.1
+ARG yq_version=4.12.2
 ARG pester_version=4.10.1
 
 ENV DEBIAN_FRONTEND=noninteractive

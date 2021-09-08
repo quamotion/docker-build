@@ -4,7 +4,7 @@ ARG dotnet_3_version=3.1.412
 ARG dotnet_3_slug=44476be2-ac39-4378-889e-37e71285c5fd/d8e7bc8809999cd5d56622993ee06c63
 ARG dotnet_version=5.0.400
 ARG dotnet_slug=f7ed6662-c39e-43da-be01-ef7cae72cd6d/58ed07e77e1a8ab0cab93c17edf33817
-ARG nbgv_version=3.4.216
+ARG nbgv_version=3.4.231
 ARG pester_version=4.10.1
 
 RUN mkdir C:\BuildAgent
