@@ -1,9 +1,9 @@
 FROM public.ecr.aws/lts/ubuntu:focal
 
-ARG dotnet_3_version=3.1.412
-ARG dotnet_3_slug=f9f54199-f0b3-43ac-badd-f9ef6867641c/50bd985f26c59f5d63f29f571f7f89e5
-ARG dotnet_version=5.0.400
-ARG dotnet_slug=4d323232-ffcc-4c09-a043-a36b554c883e/096822e81dc29383b649cd015d1ff99a
+ARG dotnet_3_version=3.1.413
+ARG dotnet_3_slug=dfd0ad22-3e47-432f-9aa1-f65b11a2ced2/d096c5d1561732c1658543fa8fb7a31f
+ARG dotnet_version=5.0.401
+ARG dotnet_slug=3795feca-e61d-4339-86a7-5e95aca2ad87/74300efb89e6664122f1f48c2beff734
 ARG nbgv_version=3.4.231
 ARG node_version=v14.17.6
 ARG yq_version=4.12.2

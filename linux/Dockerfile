@@ -1,9 +1,9 @@
 FROM public.ecr.aws/lts/ubuntu:focal
 
 ARG dotnet_3_version=3.1
-ARG dotnet_3_package_version=3.1.412-1
+ARG dotnet_3_package_version=3.1.413-1
 ARG dotnet_version=5.0
-ARG dotnet_package_version=5.0.400-1
+ARG dotnet_package_version=5.0.401-1
 ARG nbgv_version=3.4.231
 ARG node_version=v14.17.6
 ARG yq_version=4.12.2
