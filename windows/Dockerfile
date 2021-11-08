@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 ARG dotnet_3_version=3.1.413
 ARG dotnet_3_slug=587d67c3-393e-4915-b9c4-5dda816d4945/068c1fe53054c217290a8980f8c49b91
-ARG dotnet_version=5.0.401
-ARG dotnet_slug=7bb2b576-f96c-465d-80bf-0a3956e75f4c/4ba1f2657ac6eb4b725284028c4f8707
+ARG dotnet_version=6.0.100
+ARG dotnet_slug=ca65b248-9750-4c2d-89e6-ef27073d5e95/05c682ca5498bfabc95985a4c72ac635
 ARG nbgv_version=3.4.231
 ARG pester_version=4.10.1
 
