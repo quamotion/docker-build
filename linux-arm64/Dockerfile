@@ -1,4 +1,7 @@
-FROM public.ecr.aws/lts/ubuntu:focal
+# Use Ubuntu Impish (21.10), which should ship with glibc 2.34,
+# which should contain a fix for the libgomp issue:
+# https://sourceware.org/bugzilla/show_bug.cgi?id=25051
+FROM public.ecr.aws/ubuntu/ubuntu:impish
 
 ARG dotnet_3_version=3.1.413
 ARG dotnet_3_slug=dfd0ad22-3e47-432f-9aa1-f65b11a2ced2/d096c5d1561732c1658543fa8fb7a31f
