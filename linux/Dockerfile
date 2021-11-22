@@ -92,6 +92,10 @@ RUN apt-get update \
 ##
 && apt-get install -y wget libusb-1.0-0 \
 ##
+## libcap2-bin, contains setcap
+##
+&& apt-get install -y libcap2-bin \
+##
 ## git, tzdata
 ##
 && apt-get install -y git tzdata \
