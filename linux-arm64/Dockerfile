@@ -37,6 +37,10 @@ RUN apt-get update \
 ##
 && apt-get install -y wget libusb-1.0-0 \
 ##
+## libcap2-bin, contains setcap
+##
+&& apt-get install -y libcap2-bin \
+##
 ## .NET Core 5
 ##
 && mkdir -p /usr/local/dotnet \
